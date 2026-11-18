@@ -21,12 +21,15 @@ export function HowItWorksHero() {
                 </p>
                 <h1
                     id="how-it-works-heading"
-                    className="mt-4 text-balance text-[44px] font-bold leading-[1.05] tracking-[-0.035em] text-[#1a1a1a] sm:text-[68px]"
-                >
-                    Structured first interviews,{" "}
-  <br className="hidden md:inline" />
+  className="mt-4 text-balance text-[40px] font-bold leading-[1.05] tracking-[-0.035em] text-[#1a1a1a] sm:text-[48px] md:text-[56px] lg:text-[68px]"
+  >
+  <span className="md:block md:whitespace-nowrap">
+  Structured first interviews,
+  </span>{" "}
+  <span className="md:block md:whitespace-nowrap">
   from setup to shortlist.
-                </h1>
+  </span>
+  </h1>
                 <p className="mt-6 max-w-[560px] text-pretty text-lg leading-[1.6] text-[#4a4b44] sm:text-[19px]">
                     A closer look at every step — what you set up, what
                     candidates experience and how you review the results.
