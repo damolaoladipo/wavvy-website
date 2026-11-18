@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { formatLimit, formatUsd, pricingPlans } from '@/lib/pricing';
 import { cn } from '@/lib/utils';
 
 type Plan = {
@@ -12,29 +13,31 @@ type Plan = {
     badge?: string;
 };
 
+const { starter, growth } = pricingPlans;
+
 const plans: Plan[] = [
     {
-        name: 'Starter',
-        audience: 'For small in-house teams',
-        price: '[PRICE]',
+        name: starter.name,
+        audience: starter.audience,
+        price: formatUsd(starter.monthlyPrice ?? 0),
         period: '/ month',
         features: [
-            '[LIMIT] active recruitments',
-            '[LIMIT] AI interviews per month',
+            `${formatLimit(starter.limits.activeRecruitments)} active recruitments`,
+            `${formatLimit(starter.limits.interviewsPerMonth)} AI interviews per month`,
             'AI insights, recordings and transcripts',
         ],
     },
     {
-        name: 'Growth',
-        audience: 'For agencies and growing teams',
-        price: '[PRICE]',
+        name: growth.name,
+        audience: growth.audience,
+        price: formatUsd(growth.monthlyPrice ?? 0),
         period: '/ month',
         badge: 'Built for agencies',
         features: [
             'Everything in Starter',
             'Multiple clients in one workspace',
             'Candidate comparison',
-            '[LIMIT] team seats',
+            `${formatLimit(growth.limits.teamSeats)} team seats`,
         ],
     },
     {

@@ -1,54 +1,47 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
 import { Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import {
+    ANNUAL_DISCOUNT,
+    type BillingCycle,
+    type PlanId,
+    formatLimit,
+    formatUsd,
+    planOrder,
+    priceFor,
+    pricingPlans,
+} from '@/lib/pricing';
 import { cn } from '@/lib/utils';
 
-type Plan = {
-    name: string;
-    audience: string;
-    price: string;
-    period?: string;
-    note: string;
-    includesLabel: string;
-    features: string[];
-    badge?: string;
-};
+const { starter, growth } = pricingPlans;
 
-const plans: Plan[] = [
-    {
-        name: 'Starter',
-        audience: 'For small in-house teams',
-        price: '[PRICE]',
-        period: '/month',
-        note: 'Billed [monthly / annually]',
+const planDetails: Record<
+    PlanId,
+    { includesLabel: string; features: string[]; badge?: string }
+> = {
+    starter: {
         includesLabel: 'Includes',
         features: [
-            '[LIMIT] active recruitments',
-            '[LIMIT] AI interviews per month',
+            `${formatLimit(starter.limits.activeRecruitments)} active recruitments`,
+            `${formatLimit(starter.limits.interviewsPerMonth)} AI interviews per month`,
             'AI summaries and match scores',
             'Recordings and transcripts',
         ],
     },
-    {
-        name: 'Growth',
-        audience: 'For agencies and growing teams',
-        price: '[PRICE]',
-        period: '/month',
-        note: 'Billed [monthly / annually]',
+    growth: {
         includesLabel: 'Everything in Starter, plus',
         badge: 'Built for agencies',
         features: [
             'Multiple clients in one workspace',
             'Side-by-side candidate comparison',
-            '[LIMIT] team seats',
-            'Higher interview volume [LIMIT]',
+            `${formatLimit(growth.limits.teamSeats)} team seats`,
+            `${formatLimit(growth.limits.interviewsPerMonth)} AI interviews per month`,
         ],
     },
-    {
-        name: 'Enterprise',
-        audience: 'For larger organisations',
-        price: 'Custom',
-        note: 'Tailored to your volume and requirements',
+    enterprise: {
         includesLabel: 'Everything in Growth, plus',
         features: [
             'ATS connection [VALIDATE]',
@@ -57,12 +50,12 @@ const plans: Plan[] = [
             'Dedicated point of contact [VALIDATE]',
         ],
     },
-];
+};
 
 const steps = [
     {
         title: 'Pick a plan for your volume',
-        body: 'Plans differ by recruitments, interviews and seats. [VALIDATE billing unit]',
+        body: 'Plans differ by recruitments, interviews and seats. An interview counts once a candidate submits it.',
     },
     {
         title: 'Candidates never pay',
@@ -70,11 +63,60 @@ const steps = [
     },
     {
         title: 'Change plans as you grow',
-        body: 'Move up or down when your hiring volume changes. [VALIDATE contract terms]',
+        body: 'Move up or down when your hiring volume changes. Changes apply from your next billing cycle.',
     },
 ];
 
+const cycles: { id: BillingCycle; label: string }[] = [
+    { id: 'monthly', label: 'Monthly' },
+    { id: 'annual', label: 'Annually' },
+];
+
+function BillingToggle({
+    value,
+    onChange,
+}: {
+    value: BillingCycle;
+    onChange: (cycle: BillingCycle) => void;
+}) {
+    return (
+        <div
+            role="radiogroup"
+            aria-label="Billing cycle"
+            className="mt-8 inline-flex items-center gap-1 rounded-full border border-[#e5e5df] bg-[#f3f4ee] p-1"
+        >
+            {cycles.map((cycle) => {
+                const active = cycle.id === value;
+                return (
+                    <button
+                        key={cycle.id}
+                        type="button"
+                        role="radio"
+                        aria-checked={active}
+                        onClick={() => onChange(cycle.id)}
+                        className={cn(
+                            'flex h-9 items-center gap-2 rounded-full px-4 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4b6a4a]',
+                            active
+                                ? 'bg-white text-[#1a1a1a] shadow-sm'
+                                : 'text-[#6b6c64] hover:text-[#1a1a1a]',
+                        )}
+                    >
+                        {cycle.label}
+                        {cycle.id === 'annual' ? (
+                            <span className="rounded-full bg-[#dde8cf] px-2 py-0.5 text-[11px] font-semibold text-[#3d573c]">
+                                Save {Math.round(ANNUAL_DISCOUNT * 100)}%
+                            </span>
+                        ) : null}
+                    </button>
+                );
+            })}
+        </div>
+    );
+}
+
 export function PlanCards() {
+    const [cycle, setCycle] = useState<BillingCycle>('monthly');
+
     return (
         <section
             id="plans"
@@ -89,16 +131,27 @@ export function PlanCards() {
                     Choose the plan that fits your team
                 </h2>
                 <p className="mt-4 text-center text-base text-[#6b6c64]">
-                    Prices shown as [PRICE] are placeholders until pricing is
-                    confirmed.
+                    Prices in USD, excluding tax. Switch to annual billing to
+                    save {Math.round(ANNUAL_DISCOUNT * 100)}%.
                 </p>
+                <BillingToggle value={cycle} onChange={setCycle} />
 
                 <ul className="mt-14 flex w-full flex-col gap-5 lg:flex-row">
-                    {plans.map((plan) => {
-                        const featured = Boolean(plan.badge);
+                    {planOrder.map((id) => {
+                        const plan = pricingPlans[id];
+                        const details = planDetails[id];
+                        const featured = Boolean(details.badge);
+                        const price = priceFor(plan, cycle);
+                        const note =
+                            price === null
+                                ? 'Tailored to your volume and requirements'
+                                : cycle === 'annual'
+                                  ? `Billed annually at ${formatUsd(price * 12)}`
+                                  : 'Billed monthly, cancel anytime';
+
                         return (
                             <li
-                                key={plan.name}
+                                key={id}
                                 className={cn(
                                     'relative flex flex-1 flex-col rounded-[20px] border p-8',
                                     featured
@@ -106,9 +159,9 @@ export function PlanCards() {
                                         : 'border-[#e5e5df] bg-[#fafaf9]',
                                 )}
                             >
-                                {plan.badge ? (
+                                {details.badge ? (
                                     <span className="absolute -top-3 left-8 rounded-full bg-[#4b6a4a] px-3 py-1 text-xs font-semibold text-white">
-                                        {plan.badge}
+                                        {details.badge}
                                     </span>
                                 ) : null}
                                 <h3 className="text-[21px] font-semibold text-[#1a1a1a]">
@@ -117,18 +170,21 @@ export function PlanCards() {
                                 <p className="mt-1 text-sm text-[#6b6c64]">
                                     {plan.audience}
                                 </p>
-                                <p className="mt-8 flex items-baseline gap-1">
-                                    <span className="text-[48px] font-semibold leading-none tracking-[-0.03em] text-[#1a1a1a]">
-                                        {plan.price}
+                                <p
+                                    aria-live="polite"
+                                    className="mt-8 flex items-baseline gap-1"
+                                >
+                                    <span className="text-[48px] font-semibold leading-none tracking-[-0.03em] tabular-nums text-[#1a1a1a]">
+                                        {price === null ? 'Custom' : formatUsd(price)}
                                     </span>
-                                    {plan.period ? (
+                                    {price !== null ? (
                                         <span className="text-sm text-[#6b6c64]">
-                                            {plan.period}
+                                            /month
                                         </span>
                                     ) : null}
                                 </p>
                                 <p className="mt-4 text-[13px] text-[#6b6c64]">
-                                    {plan.note}
+                                    {note}
                                 </p>
                                 <Button
                                     asChild
@@ -144,10 +200,10 @@ export function PlanCards() {
                                 </Button>
                                 <hr className="my-8 border-[#e5e5df]" />
                                 <p className="text-xs font-semibold uppercase tracking-[0.08em] text-[#6b6c64]">
-                                    {plan.includesLabel}
+                                    {details.includesLabel}
                                 </p>
                                 <ul className="mt-4 flex flex-col gap-3">
-                                    {plan.features.map((feature) => (
+                                    {details.features.map((feature) => (
                                         <li
                                             key={feature}
                                             className="flex gap-3 text-[15px] leading-snug text-[#1a1a1a]"

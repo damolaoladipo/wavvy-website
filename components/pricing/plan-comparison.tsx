@@ -1,7 +1,20 @@
 import { Fragment } from 'react';
+import {
+    type PlanLimits,
+    formatLimit,
+    planOrder,
+    pricingPlans,
+} from '@/lib/pricing';
 import { cn } from '@/lib/utils';
 
 type Cell = true | false | string;
+
+function limitRow(key: keyof PlanLimits): [Cell, Cell, Cell] {
+    const [a, b, c] = planOrder.map((id) =>
+        formatLimit(pricingPlans[id].limits[key]),
+    );
+    return [a, b, c];
+}
 
 type Group = {
     title: string;
@@ -18,8 +31,8 @@ const groups: Group[] = [
             { feature: 'Asynchronous AI video interviews', values: [true, true, true] },
             { feature: 'Device check and practice question', values: [true, true, true] },
             { feature: 'Custom evaluation criteria and weights', values: [true, true, true] },
-            { feature: 'Active recruitments', values: ['[LIMIT]', '[LIMIT]', 'Custom'] },
-            { feature: 'AI interviews per month', values: ['[LIMIT]', '[LIMIT]', 'Custom'] },
+            { feature: 'Active recruitments', values: limitRow('activeRecruitments') },
+            { feature: 'AI interviews per month', values: limitRow('interviewsPerMonth') },
         ],
     },
     {
@@ -34,7 +47,7 @@ const groups: Group[] = [
     {
         title: 'Team and clients',
         rows: [
-            { feature: 'Team seats', values: ['[LIMIT]', '[LIMIT]', 'Custom'] },
+            { feature: 'Team seats', values: limitRow('teamSeats') },
             { feature: 'Multiple clients', values: [false, true, true] },
             { feature: 'ATS connection', values: [false, '[VALIDATE]', '[VALIDATE]'] },
             { feature: 'Onboarding for your team', values: [false, false, true] },
@@ -161,7 +174,7 @@ export function PlanComparison() {
                     </table>
                 </div>
                 <p className="mt-4 text-[13px] text-[#6b6c64]">
-                    ✓ included · — not included · [LIMIT] and [VALIDATE] are
+                    ✓ included · — not included · [VALIDATE] items are
                     placeholders to confirm before launch.
                 </p>
             </div>

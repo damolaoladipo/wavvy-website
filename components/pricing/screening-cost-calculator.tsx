@@ -1,8 +1,13 @@
 'use client';
 
 import { useId, useState } from 'react';
-
-const HOURS_PER_WORKING_WEEK = 40;
+import {
+    HOURS_PER_WORKING_WEEK,
+    RECRUITER_HOURLY_COST,
+    formatUsd,
+    priceFor,
+    recommendPlan,
+} from '@/lib/pricing';
 
 type SliderProps = {
     label: string;
@@ -65,8 +70,12 @@ export function ScreeningCostCalculator() {
     const [candidates, setCandidates] = useState(120);
     const [minutes, setMinutes] = useState(35);
 
-    const hours = Math.round((candidates * minutes) / 60);
-    const weeks = (hours / HOURS_PER_WORKING_WEEK).toFixed(1);
+    const exactHours = (candidates * minutes) / 60;
+    const hours = Math.round(exactHours);
+    const weeks = (exactHours / HOURS_PER_WORKING_WEEK).toFixed(1);
+    const screeningCost = Math.round(exactHours * RECRUITER_HOURLY_COST);
+    const plan = recommendPlan(candidates);
+    const planPrice = priceFor(plan, 'monthly');
 
     return (
         <section
@@ -90,7 +99,7 @@ export function ScreeningCostCalculator() {
                             label="Candidates screened per month"
                             value={candidates}
                             min={10}
-                            max={500}
+                            max={800}
                             step={10}
                             onChange={setCandidates}
                         />
@@ -129,11 +138,50 @@ export function ScreeningCostCalculator() {
                         a month spent before anyone reaches a second
                         interview.
                     </p>
-                    <hr className="my-7 border-[#3a3b35]" />
-                    <p className="text-pretty text-sm leading-[1.6] text-[#d6d7cf]">
-                        With Wavvy, first rounds run asynchronously. Your time
-                        goes into reviewing insights and talking to
-                        shortlisted candidates.
+                    <dl className="mt-7 grid grid-cols-2 gap-4 border-t border-[#3a3b35] pt-7">
+                        <div className="flex flex-col gap-1">
+                            <dt className="text-[13px] text-[#b9bab0]">
+                                Recruiter cost today
+                            </dt>
+                            <dd className="text-2xl font-semibold tabular-nums tracking-[-0.02em]">
+                                {formatUsd(screeningCost)}
+                                <span className="text-sm font-normal text-[#b9bab0]">
+                                    {' '}
+                                    / month
+                                </span>
+                            </dd>
+                        </div>
+                        <div className="flex flex-col gap-1">
+                            <dt className="text-[13px] text-[#b9bab0]">
+                                Recommended plan
+                            </dt>
+                            <dd className="text-2xl font-semibold tracking-[-0.02em]">
+                                {plan.name}
+                                <span className="text-sm font-normal text-[#b9bab0]">
+                                    {' '}
+                                    {planPrice === null
+                                        ? 'custom'
+                                        : `${formatUsd(planPrice)} / month`}
+                                </span>
+                            </dd>
+                        </div>
+                    </dl>
+                    <p className="mt-6 text-pretty text-sm leading-[1.6] text-[#d6d7cf]">
+                        {planPrice !== null && screeningCost > planPrice ? (
+                            <>
+                                {'Based on '}
+                                {formatUsd(RECRUITER_HOURLY_COST)}
+                                {'/hour of recruiter time, first rounds cost about '}
+                                <strong className="font-semibold text-[#b5d19a]">
+                                    {formatUsd(screeningCost - planPrice)} more
+                                </strong>
+                                {' a month than Wavvy '}
+                                {plan.name}
+                                {'.'}
+                            </>
+                        ) : (
+                            'With Wavvy, first rounds run asynchronously. Your time goes into reviewing insights and talking to shortlisted candidates.'
+                        )}
                     </p>
                 </div>
             </div>
