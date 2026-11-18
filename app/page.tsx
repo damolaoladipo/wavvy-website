@@ -18,6 +18,10 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
+import { CtaSection } from '@/components/home/cta-section';
+import { FaqSection } from '@/components/home/faq-section';
+import { PricingSection } from '@/components/home/pricing-section';
+import { SiteFooter } from '@/components/home/site-footer';
 
 const navLinks = ['Product', 'How it works', 'Solutions', 'Pricing'];
 
@@ -502,7 +506,12 @@ export default function Home() {
                         </div>
                     </div>
                 </section>
+
+                <PricingSection />
+                <FaqSection />
+                <CtaSection />
             </main>
+            <SiteFooter />
         </div>
     );
 }
