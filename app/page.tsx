@@ -1,4 +1,18 @@
 import Link from 'next/link';
+import {
+    ArrowRight,
+    Calendar,
+    Check,
+    CircleAlert,
+    Clock,
+    Columns3,
+    Eye,
+    Phone,
+    Repeat,
+    SlidersVertical,
+    UserCheck,
+    Video,
+} from 'lucide-react';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -25,22 +39,22 @@ const recruitments = [
 
 const principles = [
     {
-        icon: '/figma/153-142.svg',
+        icon: UserCheck,
         title: 'Recruiters decide',
         body: 'AI prepares the insight. You choose who moves forward.',
     },
     {
-        icon: '/figma/153-150.svg',
+        icon: Eye,
         title: 'Every score is explained',
         body: 'Strengths and concerns, linked to the answers behind them.',
     },
     {
-        icon: '/figma/153-157.svg',
+        icon: Clock,
         title: 'Candidates pick the time',
         body: 'No scheduling. They interview when it suits them.',
     },
     {
-        icon: '/figma/153-164.svg',
+        icon: SlidersVertical,
         title: 'Same questions, same criteria',
         body: 'Structured interviews make candidates comparable.',
     },
@@ -48,22 +62,22 @@ const principles = [
 
 const problems = [
     {
-        icon: '/figma/153-188.svg',
+        icon: Phone,
         title: 'Endless screening calls',
         body: 'The same first conversation, repeated for every applicant, before you know who deserves a second one.',
     },
     {
-        icon: '/figma/153-194.svg',
+        icon: Calendar,
         title: 'Scheduling back-and-forth',
         body: 'Days lost to calendar tennis, while strong candidates move on to other offers.',
     },
     {
-        icon: '/figma/153-201.svg',
+        icon: Columns3,
         title: 'Hard-to-compare candidates',
         body: 'Notes in different formats, from different days and different interviewers. Shortlists end up built on gut feel.',
     },
     {
-        icon: '/figma/153-208.svg',
+        icon: Repeat,
         title: 'Repetitive admin',
         body: 'Writing up notes and summaries instead of spending time with your strongest people.',
     },
@@ -78,23 +92,11 @@ const withoutWavvy = [
 ];
 
 const withWavvy = [
-    {
-        icon: '/figma/153-251.svg',
-        text: 'Create a structured AI interview for the role',
-    },
-    { icon: '/figma/153-256.svg', text: 'Invite candidates with one link' },
-    {
-        icon: '/figma/153-261.svg',
-        text: 'Candidates interview on their own schedule',
-    },
-    {
-        icon: '/figma/153-266.svg',
-        text: 'Review AI insights, recordings and transcripts',
-    },
-    {
-        icon: '/figma/153-271.svg',
-        text: 'Compare candidates side by side in one workspace',
-    },
+    'Create a structured AI interview for the role',
+    'Invite candidates with one link',
+    'Candidates interview on their own schedule',
+    'Review AI insights, recordings and transcripts',
+    'Compare candidates side by side in one workspace',
 ];
 
 export default function Home() {
@@ -109,7 +111,7 @@ export default function Home() {
                     >
                         <span className="flex size-7 items-center justify-center rounded-[7px] bg-[#8fae6f]">
                             <img
-                                src="/figma/153-7.svg"
+                                src="/images/wavvy-mark.svg"
                                 alt=""
                                 className="size-4"
                             />
@@ -140,11 +142,10 @@ export default function Home() {
                             Log in
                         </Link>
                         <Button
-                            nativeButton={false}
-                            render={<Link href="#" />}
+                            asChild
                             className="h-11 rounded-full bg-[#4b6a4a] px-5 text-[15px] font-semibold text-white hover:bg-[#3d573c]"
                         >
-                            Book a demo
+                            <Link href="#">Book a demo</Link>
                         </Button>
                     </div>
                 </div>
@@ -173,24 +174,25 @@ export default function Home() {
                             </p>
                             <div className="flex flex-wrap gap-3">
                                 <Button
-                                    nativeButton={false}
-                                    render={<Link href="#" />}
+                                    asChild
                                     className="h-[54px] gap-2 rounded-full bg-[#4b6a4a] px-7 text-base font-semibold text-white hover:bg-[#3d573c]"
                                 >
-                                    Book a demo
-                                    <img
-                                        src="/figma/153-36.svg"
-                                        alt=""
-                                        className="size-[18px]"
-                                    />
+                                    <Link href="#">
+                                        Book a demo
+                                        <ArrowRight
+                                            aria-hidden="true"
+                                            className="size-[18px]"
+                                        />
+                                    </Link>
                                 </Button>
                                 <Button
-                                    nativeButton={false}
-                                    render={<Link href="#how-it-works" />}
+                                    asChild
                                     variant="outline"
                                     className="h-[54px] rounded-full border-[#d3d2c7] bg-white px-6 text-base font-semibold text-[#1a1a1a] hover:bg-[#fafaf9] hover:text-[#1a1a1a]"
                                 >
-                                    See how it works
+                                    <Link href="#how-it-works">
+                                        See how it works
+                                    </Link>
                                 </Button>
                             </div>
                             <p className="text-sm leading-[18.2px] text-[#71717a]">
@@ -208,7 +210,7 @@ export default function Home() {
                                     <div className="mb-2 flex items-center gap-2 px-1.5 pt-2">
                                         <span className="flex size-[18px] items-center justify-center rounded-[4.5px] bg-[#8fae6f]">
                                             <img
-                                                src="/figma/153-46.svg"
+                                                src="/images/wavvy-mark-sm.svg"
                                                 alt=""
                                                 className="size-[11px]"
                                             />
@@ -313,18 +315,16 @@ export default function Home() {
                                     Strengths
                                 </p>
                                 <p className="flex items-center gap-1.5 text-[11px]">
-                                    <img
-                                        src="/figma/153-116.svg"
-                                        alt=""
-                                        className="size-3.5"
+                                    <Check
+                                        aria-hidden="true"
+                                        className="size-3.5 text-[#4b6a4a]"
                                     />
                                     Clear design-system thinking (Q3)
                                 </p>
                                 <p className="flex items-center gap-1.5 text-[11px]">
-                                    <img
-                                        src="/figma/153-120.svg"
-                                        alt=""
-                                        className="size-3.5"
+                                    <Check
+                                        aria-hidden="true"
+                                        className="size-3.5 text-[#4b6a4a]"
                                     />
                                     Structured research approach (Q1)
                                 </p>
@@ -332,10 +332,9 @@ export default function Home() {
                                     Area to explore
                                 </p>
                                 <p className="flex items-center gap-1.5 text-[11px]">
-                                    <img
-                                        src="/figma/153-125.svg"
-                                        alt=""
-                                        className="size-3.5"
+                                    <CircleAlert
+                                        aria-hidden="true"
+                                        className="size-3.5 text-[#b45309]"
                                     />
                                     Limited stakeholder examples (Q5)
                                 </p>
@@ -343,10 +342,9 @@ export default function Home() {
 
                             <Card className="text-[#1a1a1a] absolute -top-5 right-0 flex-row items-center gap-2.5 rounded-[14px] border-[#e5e5df] bg-white px-3 py-[11px] shadow-[0_16px_40px_-14px_rgba(26,26,26,0.2)] lg:-right-5">
                                 <span className="flex size-[30px] items-center justify-center rounded-[9px] bg-[#dce8d0]">
-                                    <img
-                                        src="/figma/153-131.svg"
-                                        alt=""
-                                        className="size-4"
+                                    <Video
+                                        aria-hidden="true"
+                                        className="size-4 text-[#4b6a4a]"
                                     />
                                 </span>
                                 <div>
@@ -375,10 +373,10 @@ export default function Home() {
                                     key={item.title}
                                     className="flex gap-3.5 bg-white p-6"
                                 >
-                                    <img
-                                        src={item.icon || '/placeholder.svg'}
-                                        alt=""
-                                        className="size-[22px] shrink-0"
+                                    <item.icon
+                                        aria-hidden="true"
+                                        strokeWidth={1.75}
+                                        className="size-[22px] shrink-0 text-[#4b6a4a]"
                                     />
                                     <div className="flex flex-col gap-1.5">
                                         <h2 className="text-[15px] font-semibold leading-[19.5px]">
@@ -424,15 +422,13 @@ export default function Home() {
                                     className="gap-0 rounded-2xl border-0 bg-[#f5f5f0] p-[26px] shadow-none lg:min-h-[296px]"
                                 >
                                     <span className="flex size-11 items-center justify-center rounded-xl border border-[#e5e5df] bg-white">
-                                        <img
-                                            src={
-                                                item.icon || '/placeholder.svg'
-                                            }
-                                            alt=""
-                                            className="size-5"
+                                        <item.icon
+                                            aria-hidden="true"
+                                            strokeWidth={1.75}
+                                            className="size-5 text-[#1a1a1a]"
                                         />
                                     </span>
-                                    <h3 className="mt-10 text-lg font-semibold leading-[23.4px] tracking-[-0.01em]">
+                                    <h3 className="mt-10 text-lg font-semibold leading-[23.4px] tracking-[-0.01em] text-[#1a1a1a]">
                                         {item.title}
                                     </h3>
                                     <p className="mt-2.5 text-[15px] leading-[23.3px] text-[#4a4b44]">
@@ -474,7 +470,7 @@ export default function Home() {
                                 <div className="flex items-center gap-2.5">
                                     <span className="flex size-[22px] items-center justify-center rounded-[5.5px] bg-[#8fae6f]">
                                         <img
-                                            src="/figma/153-245.svg"
+                                            src="/images/wavvy-mark-md.svg"
                                             alt=""
                                             className="size-[13px]"
                                         />
@@ -484,23 +480,20 @@ export default function Home() {
                                     </p>
                                 </div>
                                 <ul>
-                                    {withWavvy.map((item) => (
+                                    {withWavvy.map((text) => (
                                         <li
-                                            key={item.text}
+                                            key={text}
                                             className="flex items-center gap-3.5 border-b border-[#edede7] py-3.5 last:border-b-0"
                                         >
                                             <span className="flex size-[26px] shrink-0 items-center justify-center rounded-full bg-[#4b6a4a]">
-                                                <img
-                                                    src={
-                                                        item.icon ||
-                                                        '/placeholder.svg'
-                                                    }
-                                                    alt=""
-                                                    className="size-3.5"
+                                                <Check
+                                                    aria-hidden="true"
+                                                    strokeWidth={3}
+                                                    className="size-3.5 text-white"
                                                 />
                                             </span>
                                             <span className="text-base font-medium">
-                                                {item.text}
+                                                {text}
                                             </span>
                                         </li>
                                     ))}
