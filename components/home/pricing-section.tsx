@@ -125,7 +125,7 @@ export function PricingSection() {
                         <Link href="#">Book a demo</Link>
                     </Button>
                     <Link
-                        href="#"
+                        href="/pricing"
                         className="inline-flex items-center gap-1 text-[15px] font-medium text-[#4b6a4a] underline underline-offset-4 hover:text-[#3d573c]"
                     >
                         View full pricing
