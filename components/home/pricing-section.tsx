@@ -125,7 +125,7 @@ export function PricingSection() {
                         asChild
                         className="h-[52px] rounded-full bg-[#4b6a4a] px-7 text-base font-semibold text-white hover:bg-[#3d573c]"
                     >
-                        <Link href="#">Book a demo</Link>
+                        <Link href="/book-a-demo">Book a demo</Link>
                     </Button>
                     <Link
                         href="/pricing"

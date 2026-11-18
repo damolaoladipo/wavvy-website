@@ -196,7 +196,7 @@ export function PlanCards() {
                                             : 'border-[#1a1a1a] bg-white text-[#1a1a1a] hover:bg-[#f5f5f0] hover:text-[#1a1a1a]',
                                     )}
                                 >
-                                    <Link href="#">Book a demo</Link>
+                                    <Link href="/book-a-demo">Book a demo</Link>
                                 </Button>
                                 <hr className="my-8 border-[#e5e5df]" />
                                 <p className="text-xs font-semibold uppercase tracking-[0.08em] text-[#6b6c64]">

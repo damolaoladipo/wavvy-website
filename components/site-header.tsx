@@ -53,7 +53,7 @@ export function SiteHeader() {
                         asChild
                         className="h-11 rounded-full bg-[#4b6a4a] px-5 text-[15px] font-semibold text-white hover:bg-[#3d573c]"
                     >
-                        <Link href="#">Book a demo</Link>
+                        <Link href="/book-a-demo">Book a demo</Link>
                     </Button>
                 </div>
             </div>
