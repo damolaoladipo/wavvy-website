@@ -15,7 +15,7 @@ export function HowItWorksHero() {
             aria-labelledby="how-it-works-heading"
             className="bg-white px-5 pt-20 pb-12 lg:pt-24"
         >
-            <div className="mx-auto flex max-w-[820px] flex-col items-center text-center">
+            <div className="mx-auto flex max-w-[960px] flex-col items-center text-center">
                 <p className="text-[13px] font-semibold uppercase tracking-[0.08em] text-[#4b6a4a]">
                     How it works
                 </p>
@@ -23,7 +23,9 @@ export function HowItWorksHero() {
                     id="how-it-works-heading"
                     className="mt-4 text-balance text-[44px] font-bold leading-[1.05] tracking-[-0.035em] text-[#1a1a1a] sm:text-[68px]"
                 >
-                    Structured first interviews, from setup to shortlist.
+                    Structured first interviews,{" "}
+  <br className="hidden md:inline" />
+  from setup to shortlist.
                 </h1>
                 <p className="mt-6 max-w-[560px] text-pretty text-lg leading-[1.6] text-[#4a4b44] sm:text-[19px]">
                     A closer look at every step — what you set up, what
