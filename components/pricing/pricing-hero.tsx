@@ -26,7 +26,7 @@ export function PricingHero() {
                     asChild
                     className="mt-9 h-[54px] rounded-full bg-[#4b6a4a] px-7 text-base font-semibold text-white hover:bg-[#3d573c]"
                 >
-                    <Link href="#">Book a demo</Link>
+                    <Link href="/book-a-demo">Book a demo</Link>
                 </Button>
             </div>
         </section>

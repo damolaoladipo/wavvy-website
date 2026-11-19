@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 const navLinks = [
     { label: 'Product', href: '/' },
     { label: 'How it works', href: '/how-it-works' },
-    { label: 'Solutions', href: '#' },
+    { label: 'Solutions', href: '/solutions' },
     { label: 'Pricing', href: '/pricing' },
 ];
 
@@ -44,7 +44,7 @@ export function SiteHeader() {
                 </nav>
                 <div className="flex items-center gap-5">
                     <Link
-                        href="#"
+                        href="/book-a-demo"
                         className="hidden text-[15px] font-medium sm:inline"
                     >
                         Log in

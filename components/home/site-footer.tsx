@@ -4,7 +4,7 @@ const columns = [
     {
         title: 'Product',
         links: [
-            { label: 'Features', href: '#' },
+            { label: 'Features', href: '/#features' },
             { label: 'How it works', href: '/how-it-works' },
             { label: 'Pricing', href: '/pricing' },
         ],
@@ -12,29 +12,29 @@ const columns = [
     {
         title: 'Solutions',
         links: [
-            { label: 'In-house teams', href: '#' },
-            { label: 'Recruitment agencies', href: '#' },
-            { label: 'Talent acquisition', href: '#' },
+            { label: 'In-house teams', href: '/solutions#in-house' },
+            { label: 'Recruitment agencies', href: '/solutions#agencies' },
+            { label: 'Talent acquisition', href: '/solutions#talent-acquisition' },
         ],
     },
     {
         title: 'Company',
         links: [
-            { label: 'About', href: '#' },
-            { label: 'Contact', href: '#' },
+            { label: 'About', href: '/about' },
+            { label: 'Contact', href: '/book-a-demo' },
         ],
     },
     {
         title: 'Legal',
         links: [
-            { label: 'Privacy policy', href: '#' },
-            { label: 'Terms of service', href: '#' },
-            { label: 'Cookie policy', href: '#' },
+            { label: 'Privacy policy', href: '/privacy' },
+            { label: 'Terms of service', href: '/terms' },
+            { label: 'Cookie policy', href: '/cookies' },
         ],
     },
     {
         title: 'Account',
-        links: [{ label: 'Log in', href: '#' }],
+        links: [{ label: 'Log in', href: '/book-a-demo' }],
     },
 ];
 

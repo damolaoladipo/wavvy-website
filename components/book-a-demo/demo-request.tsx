@@ -196,7 +196,7 @@ export function DemoRequest() {
                         </button>
                         <p className="mt-3 text-center text-[13px] text-[#6b6b65]">
                             No commitment. We only use your details to arrange the demo.{' '}
-                            <Link href="#" className="underline underline-offset-2 hover:text-[#4b6a4a]">
+                            <Link href="/privacy" className="underline underline-offset-2 hover:text-[#4b6a4a]">
                                 Privacy policy
                             </Link>
                         </p>

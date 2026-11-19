@@ -20,7 +20,7 @@ export function CtaSection() {
                     asChild
                     className="mt-10 h-14 rounded-full bg-[#4b6a4a] px-8 text-base font-semibold text-white hover:bg-[#3d573c]"
                 >
-                    <Link href="#">
+                    <Link href="/book-a-demo">
                         Book a demo
                         <ArrowRight aria-hidden="true" className="size-4" />
                     </Link>

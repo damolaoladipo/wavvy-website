@@ -133,7 +133,7 @@ export default function Home() {
                                     asChild
                                     className="h-[54px] gap-2 rounded-full bg-[#4b6a4a] px-7 text-base font-semibold text-white hover:bg-[#3d573c]"
                                 >
-                                    <Link href="#">
+                                    <Link href="/book-a-demo">
                                         Book a demo
                                         <ArrowRight
                                             aria-hidden="true"
@@ -146,7 +146,7 @@ export default function Home() {
                                     variant="outline"
                                     className="h-[54px] rounded-full border-[#d3d2c7] bg-white px-6 text-base font-semibold text-[#1a1a1a] hover:bg-[#fafaf9] hover:text-[#1a1a1a]"
                                 >
-                                    <Link href="#how-it-works">
+                                    <Link href="/how-it-works">
                                         See how it works
                                     </Link>
                                 </Button>
@@ -317,7 +317,11 @@ export default function Home() {
                     </div>
                 </section>
 
-                <section className="px-5 py-12">
+                <section
+                    id="features"
+                    aria-label="Features"
+                    className="scroll-mt-24 px-5 py-12"
+                >
                     <div className="mx-auto flex max-w-[1200px] flex-col items-center gap-8 xl:px-8">
                         <p className="text-center text-sm font-semibold text-[#71717a]">
                             Built for recruiters. Designed around better
