@@ -9,13 +9,6 @@ export const metadata: Metadata = {
     robots: { index: false },
 };
 
-const suggestions = [
-    { label: 'Product', description: 'Everything Wavvy does, in one place.', href: '/product' },
-    { label: 'How it works', description: 'From setup to shortlist, step by step.', href: '/how-it-works' },
-    { label: 'Solutions', description: 'For in-house teams and agencies.', href: '/solutions' },
-    { label: 'Pricing', description: 'Plans for teams of every size.', href: '/pricing' },
-];
-
 export default function NotFound() {
     return (
         <div className="flex min-h-screen flex-col bg-[#f5f5f0] font-sans text-[#1a1a1a]">
@@ -29,8 +22,8 @@ export default function NotFound() {
                         This page didn&apos;t make the shortlist.
                     </h1>
                     <p className="mt-5 max-w-[520px] text-pretty text-lg leading-[1.6] text-[#4a4b44]">
-                        The page you&apos;re looking for has moved or doesn&apos;t exist. Here are a few
-                        places worth a look instead.
+                        The page you&apos;re looking for has moved or
+                        doesn&apos;t exist.
                     </p>
                     <div className="mt-8 flex flex-wrap justify-center gap-3">
                         <Link
@@ -47,30 +40,6 @@ export default function NotFound() {
                             Book a demo
                         </Link>
                     </div>
-
-                    <nav aria-label="Suggested pages" className="mt-14 w-full">
-                        <ul className="grid gap-3 text-left sm:grid-cols-2">
-                            {suggestions.map((item) => (
-                                <li key={item.href}>
-                                    <Link
-                                        href={item.href}
-                                        className="group flex items-center justify-between gap-4 rounded-[18px] border border-[#e5e5df] bg-white p-5 transition-colors hover:border-[#4b6a4a]"
-                                    >
-                                        <span>
-                                            <span className="block font-semibold">{item.label}</span>
-                                            <span className="mt-1 block text-sm text-[#6b6c64]">
-                                                {item.description}
-                                            </span>
-                                        </span>
-                                        <ArrowRight
-                                            className="size-4 shrink-0 text-[#4b6a4a] transition-transform group-hover:translate-x-0.5"
-                                            aria-hidden="true"
-                                        />
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </nav>
                 </div>
             </main>
             <SiteFooter />

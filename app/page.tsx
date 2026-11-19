@@ -540,18 +540,6 @@ export default function Home() {
                 <CtaSection />
             </main>
             <SiteFooter />
-            <div className="h-[72px] sm:hidden" aria-hidden="true" />
-            <div className="fixed inset-x-0 bottom-0 z-40 flex h-[72px] items-center justify-between gap-3 border-t border-[#e5e5df] bg-[#f5f5f0]/95 px-4 backdrop-blur sm:hidden">
-                <p className="text-[13px] text-[#4a4b44]">
-                    See Wavvy with one of your roles
-                </p>
-                <Button
-                    asChild
-                    className="h-[46px] shrink-0 rounded-full bg-[#4b6a4a] px-5 text-[15px] font-semibold text-white hover:bg-[#3d573c]"
-                >
-                    <Link href="/book-a-demo">Book a demo</Link>
-                </Button>
-            </div>
         </div>
     );
 }
