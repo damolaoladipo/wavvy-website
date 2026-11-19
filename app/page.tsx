@@ -108,57 +108,129 @@ export default function Home() {
             <SiteHeader />
 
             <main>
-                <section className="px-5 py-16 lg:py-20">
-                    <div className="mx-auto flex max-w-[1200px] flex-col gap-14 lg:flex-row lg:items-center lg:justify-between">
-                        <div className="flex max-w-[470px] flex-col items-start gap-6">
-                            <Badge className="h-[30px] gap-2 rounded-full border-0 bg-[#dce8d0] px-3.5 text-[13px] font-semibold text-[#4b6a4a]">
+                <section className="px-4 pt-9 pb-12 sm:px-5 sm:py-16 lg:py-20">
+                    <div className="mx-auto flex max-w-[1200px] flex-col gap-10 sm:gap-14 lg:flex-row lg:items-center lg:justify-between">
+                        <div className="flex w-full flex-col items-start gap-5 sm:max-w-[470px] sm:gap-6">
+                            <Badge className="h-[27px] gap-2 rounded-full border-0 bg-[#dce8d0] px-2 text-[13px] font-semibold text-[#4b6a4a] sm:h-[30px] sm:px-3.5">
                                 <span
-                                    className="size-2 rounded-full bg-[#4b6a4a]"
+                                    className="size-[7px] rounded-full bg-[#4b6a4a] sm:size-2"
                                     aria-hidden="true"
                                 />
-                                AI screening interviews for recruitment teams
+                                <span>
+                                    AI screening interviews
+                                    <span className="hidden sm:inline">
+                                        {' for recruitment teams'}
+                                    </span>
+                                </span>
                             </Badge>
-                            <h1 className="text-balance text-[44px] font-bold leading-[1.09] tracking-[-0.03em] text-black sm:text-[56px]">
-                                Spend less time screening. More time hiring.
+                            <h1 className="text-balance text-[40px] font-bold leading-[1.05] tracking-[-0.03em] text-black sm:text-[56px] sm:leading-[1.09]">
+                                Spend less time screening.{' '}
+                                <span className="text-[#4b6a4a] sm:text-inherit">
+                                    More time hiring.
+                                </span>
                             </h1>
-                            <p className="text-[19px] leading-[29.5px] text-[#4a4b44]">
+                            <p className="text-[17px] leading-[26px] text-[#4a4b44] sm:hidden">
+                                Wavvy runs your first-round interviews
+                                asynchronously and gives you explainable
+                                insights on every candidate.
+                            </p>
+                            <p className="hidden text-[19px] leading-[29.5px] text-[#4a4b44] sm:block">
                                 Wavvy runs your first-round interviews
                                 asynchronously, then gives you structured,
                                 explainable insights on every candidate — so you
                                 can focus on the people worth a real
                                 conversation.
                             </p>
-                            <div className="flex flex-wrap gap-3">
+                            <div className="flex w-full flex-col gap-2.5 pt-2 sm:w-auto sm:flex-row sm:flex-wrap sm:gap-3 sm:pt-0">
                                 <Button
                                     asChild
-                                    className="h-[54px] gap-2 rounded-full bg-[#4b6a4a] px-7 text-base font-semibold text-white hover:bg-[#3d573c]"
+                                    className="h-[54px] w-full gap-2 rounded-full bg-[#4b6a4a] px-7 text-base font-semibold text-white hover:bg-[#3d573c] sm:w-auto"
                                 >
                                     <Link href="/book-a-demo">
                                         Book a demo
                                         <ArrowRight
                                             aria-hidden="true"
-                                            className="size-[18px]"
+                                            className="hidden size-[18px] sm:block"
                                         />
                                     </Link>
                                 </Button>
                                 <Button
                                     asChild
                                     variant="outline"
-                                    className="h-[54px] rounded-full border-[#d3d2c7] bg-white px-6 text-base font-semibold text-[#1a1a1a] hover:bg-[#fafaf9] hover:text-[#1a1a1a]"
+                                    className="h-[50px] w-full rounded-full border-[#d3d2c7] bg-white px-6 text-base font-semibold text-[#1a1a1a] hover:bg-[#fafaf9] hover:text-[#1a1a1a] sm:h-[54px] sm:w-auto"
                                 >
                                     <Link href="/how-it-works">
                                         See how it works
                                     </Link>
                                 </Button>
                             </div>
-                            <p className="text-sm leading-[18.2px] text-[#71717a]">
-                                Walk through it with one of your own open roles.
+                            <p className="w-full text-center text-sm leading-[18.2px] text-[#71717a] sm:text-left">
+                                <span className="hidden sm:inline">
+                                    Walk through it with one of your own open
+                                    roles.{' '}
+                                </span>
                                 Works alongside your ATS.
                             </p>
                         </div>
 
                         <div
-                            className="relative w-full max-w-[610px] pb-24 lg:pb-10"
+                            className="relative w-full pb-6 sm:hidden"
+                            aria-hidden="true"
+                        >
+                            <Card className="gap-4 rounded-2xl border-[#e5e5df] bg-white px-4 pt-4 pb-10 text-[#1a1a1a] shadow-[0_20px_50px_-24px_rgba(26,26,26,0.22)]">
+                                <div className="flex items-center gap-2.5">
+                                    <Avatar className="size-[38px]">
+                                        <AvatarFallback className="bg-[#dce8d0] text-[13px] font-bold text-[#4b6a4a]">
+                                            AK
+                                        </AvatarFallback>
+                                    </Avatar>
+                                    <div className="flex-1">
+                                        <p className="text-[15px] font-semibold leading-5">
+                                            Anna Kowalska
+                                        </p>
+                                        <p className="text-[13px] text-[#71717a]">
+                                            Senior UX Designer
+                                        </p>
+                                    </div>
+                                    <div className="text-right">
+                                        <p className="text-[26px] font-bold leading-7 text-[#4b6a4a]">
+                                            86
+                                        </p>
+                                        <p className="text-[11px] text-[#71717a]">
+                                            match
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-2 gap-2.5">
+                                    <div className="flex flex-col gap-1.5 rounded-[10px] bg-[#eef1e8] p-2.5">
+                                        <p className="text-[11px] font-semibold uppercase tracking-[0.06em] text-[#4b6a4a]">
+                                            Strengths
+                                        </p>
+                                        <p className="text-[13px] leading-[18px]">
+                                            Design systems · Q3 Research · Q1
+                                        </p>
+                                    </div>
+                                    <div className="flex flex-col gap-1.5 rounded-[10px] bg-[#fdf3c7] p-2.5">
+                                        <p className="text-[11px] font-semibold uppercase tracking-[0.06em] text-[#92400e]">
+                                            To explore
+                                        </p>
+                                        <p className="text-[13px] leading-[18px]">
+                                            Stakeholder examples · Q5
+                                        </p>
+                                    </div>
+                                </div>
+                            </Card>
+                            <div className="absolute inset-x-3 bottom-0 flex h-[42px] items-center gap-2.5 rounded-[10px] bg-[#1e1f1a] px-3.5 text-[13px] text-[#e5e5df] shadow-[0_12px_30px_-12px_rgba(26,26,26,0.5)]">
+                                <Video
+                                    aria-hidden="true"
+                                    className="size-4 text-[#8fae6f]"
+                                />
+                                Interview completed · transcript ready
+                            </div>
+                        </div>
+
+                        <div
+                            className="relative hidden w-full max-w-[610px] pb-24 sm:block lg:pb-10"
                             aria-hidden="true"
                         >
                             <Card className="text-[#1a1a1a] ml-auto flex max-w-[570px] flex-row gap-0 overflow-hidden rounded-[18px] border-[#e5e5df] bg-white py-0 shadow-[0_24px_60px_-20px_rgba(26,26,26,0.18)]">
@@ -468,6 +540,18 @@ export default function Home() {
                 <CtaSection />
             </main>
             <SiteFooter />
+            <div className="h-[72px] sm:hidden" aria-hidden="true" />
+            <div className="fixed inset-x-0 bottom-0 z-40 flex h-[72px] items-center justify-between gap-3 border-t border-[#e5e5df] bg-[#f5f5f0]/95 px-4 backdrop-blur sm:hidden">
+                <p className="text-[13px] text-[#4a4b44]">
+                    See Wavvy with one of your roles
+                </p>
+                <Button
+                    asChild
+                    className="h-[46px] shrink-0 rounded-full bg-[#4b6a4a] px-5 text-[15px] font-semibold text-white hover:bg-[#3d573c]"
+                >
+                    <Link href="/book-a-demo">Book a demo</Link>
+                </Button>
+            </div>
         </div>
     );
 }
