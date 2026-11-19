@@ -4,7 +4,8 @@ import { cn } from '@/lib/utils';
 
 type StepSectionProps = {
     id: string;
-    step: number;
+    step?: number;
+    eyebrow?: string;
     title: string;
     description: ReactNode;
     visual: ReactNode;
@@ -17,6 +18,7 @@ type StepSectionProps = {
 export function StepSection({
     id,
     step,
+    eyebrow,
     title,
     description,
     visual,
@@ -46,7 +48,7 @@ export function StepSection({
                             dark ? 'text-[#b5cf95]' : 'text-[#4b6a4a]',
                         )}
                     >
-                        Step {step}
+                        {eyebrow ?? `Step ${step}`}
                     </p>
                     <h2
                         id={headingId}

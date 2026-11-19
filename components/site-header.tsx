@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
 const navLinks = [
-    { label: 'Product', href: '/' },
+    { label: 'Product', href: '/product' },
     { label: 'How it works', href: '/how-it-works' },
     { label: 'Solutions', href: '/solutions' },
     { label: 'Pricing', href: '/pricing' },
